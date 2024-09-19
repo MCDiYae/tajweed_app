@@ -64,7 +64,8 @@ class ListRules extends StatelessWidget {
                           width: 16,
                         ),
                         IconButton(
-                          alignment: Alignment.bottomRight,
+                          color: Colors.greenAccent,
+                          alignment: Alignment.topLeft,
                           icon: Icon(Icons.favorite_border,
                               color: Theme.of(context).iconTheme.color),
                           onPressed: () {
@@ -85,36 +86,3 @@ class ListRules extends StatelessWidget {
     );
   }
 }
-
-// Container(
-//                 height: 90,
-//                 color: Theme.of(context).cardColor,
-//                 margin: const EdgeInsets.symmetric(vertical: 2.0),
-//                 child: ListTile(
-//                   leading: IconButton(
-//                     icon: Icon(Icons.favorite_border,
-//                         color: Theme.of(context).iconTheme.color),
-//                     onPressed: () {
-//                       // Handle favorite action here
-//                     },
-//                   ),
-//                   title: Text(
-//                     rule.title,
-//                     style: Theme.of(context).textTheme.titleLarge,
-//                   ),
-//                   trailing: Image.asset(
-//                     rule.image,
-//                     fit: BoxFit.fill,
-//                     width: 60,
-//                     height: double.infinity,
-//                   ),
-//                   onTap: () {
-//                     Navigator.push(
-//                       context,
-//                       MaterialPageRoute(
-//                         builder: (context) => RuleDetailPage(rule: rule),
-//                       ),
-//                     );
-//                   },
-//                 ),
-//               );

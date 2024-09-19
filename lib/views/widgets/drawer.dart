@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -26,7 +25,7 @@ class MyDrawer extends StatelessWidget {
                     // width: 60,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 const Text(
@@ -55,12 +54,55 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.info),
+            leading: const Icon(Icons.desktop_mac_outlined),
             title: const Text('معلومات حول التطبيق'),
             onTap: () {
               // Handle about navigation
             },
           ),
+          Divider(
+            color: Theme.of(context).scaffoldBackgroundColor,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("المزيد"),
+          ),
+          ListTile(
+            leading: const Icon(Icons.privacy_tip_outlined),
+            title: const Text('سياسة الخصوصية'),
+            onTap: () {
+              // Handle settings navigation
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.share),
+            title: const Text('شارك التطبيق'),
+            onTap: () {
+              // Handle about navigation
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.star),
+            title: const Text('قيم التطبيق'),
+            onTap: () {
+              // Handle about navigation
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.shopping_bag_rounded),
+            title: const Text('المزيد من التطبيقات'),
+            onTap: () {
+              // Handle about navigation
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.close),
+            title: const Text('الخروج'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+
           // Add more ListTiles for other drawer items
         ],
       ),

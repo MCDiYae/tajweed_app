@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tajweed_app/model/tajweed.dart';
 import 'package:tajweed_app/utils/fetch_data.dart';
 import 'package:tajweed_app/views/detail_page.dart';
-import 'package:tajweed_app/views/widgets/app_bar.dart';
 import 'package:tajweed_app/views/widgets/drawer.dart';
-import 'package:tajweed_app/views/widgets/list_rules.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -62,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     hintText: 'Search...',
                     border: InputBorder.none,
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.clear),
+                      icon: const Icon(Icons.clear),
                       onPressed: () {
                         searchController.clear();
                         filterSearchResults('');
@@ -78,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: [
             IconButton(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
               onPressed: () {
                 setState(() {
                   isSearching = !isSearching;
