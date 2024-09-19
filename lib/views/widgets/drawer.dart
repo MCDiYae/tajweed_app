@@ -63,8 +63,8 @@ class MyDrawer extends StatelessWidget {
           Divider(
             color: Theme.of(context).scaffoldBackgroundColor,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Text("المزيد"),
           ),
           ListTile(
