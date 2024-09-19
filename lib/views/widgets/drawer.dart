@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tajweed_app/views/favorite_page.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -43,7 +44,10 @@ class MyDrawer extends StatelessWidget {
             leading: const Icon(Icons.favorite),
             title: const Text('المفضلة'),
             onTap: () {
-              // Handle favorite navigation
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const FavoritePage()),
+              );
             },
           ),
           ListTile(

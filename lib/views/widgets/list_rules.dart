@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-// ignore: unnecessary_import
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tajweed_app/model/tajweed.dart';
 import 'package:tajweed_app/views/detail_page.dart';
+
+import '../../cubit/favorite_cubit.dart';
 
 class ListRules extends StatelessWidget {
   const ListRules({
@@ -14,6 +15,9 @@ class ListRules extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Access the FavoritesCubit in this widget
+    final favoritesCubit = context.read<FavoritesCubit>();
+
     return FutureBuilder<List<Tajweed>>(
       future: futureRules,
       builder: (context, snapshot) {
@@ -27,6 +31,8 @@ class ListRules extends StatelessWidget {
             itemCount: rules.length,
             itemBuilder: (context, index) {
               final rule = rules[index];
+              final isFavorite =
+                  favoritesCubit.state.any((fav) => fav.id == rule.id);
               return Card(
                 color: Theme.of(context).cardColor,
                 margin:
@@ -51,25 +57,34 @@ class ListRules extends StatelessWidget {
                           height: 100,
                           fit: BoxFit.cover,
                         ),
-                        const SizedBox(
-                          width: 16,
-                        ),
+                        const SizedBox(width: 16),
                         Expanded(
                           child: Text(
                             rule.title,
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                         ),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        IconButton(
-                          color: Colors.greenAccent,
-                          alignment: Alignment.topLeft,
-                          icon: Icon(Icons.favorite_border,
-                              color: Theme.of(context).iconTheme.color),
-                          onPressed: () {
-                            // Handle favorite action here
+                        const SizedBox(width: 16),
+                        BlocBuilder<FavoritesCubit, List<Tajweed>>(
+                          builder: (context, state) {
+                            return IconButton(
+                              color: Theme.of(context).dialogBackgroundColor,
+                              alignment: Alignment.topLeft,
+                              icon: Icon(
+                                isFavorite
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                color: isFavorite ? Colors.red : Colors.grey,
+                              ),
+                              onPressed: () {
+                                // Toggle favorite
+                                if (isFavorite) {
+                                  favoritesCubit.removeFavorite(rule.id);
+                                } else {
+                                  favoritesCubit.addFavorite(rule);
+                                }
+                              },
+                            );
                           },
                         ),
                       ],

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:tajweed_app/model/tajweed.dart';
 import 'package:tajweed_app/utils/fetch_data.dart';
-import 'package:tajweed_app/views/detail_page.dart';
 import 'package:tajweed_app/views/widgets/drawer.dart';
+import 'package:tajweed_app/views/widgets/list_rules.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -90,74 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         // body: ListRules(futureRules: futureRules),
-        body: FutureBuilder<List<Tajweed>>(
-          future: futureRules,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            } else if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: displayRules.length,
-                itemBuilder: (context, index) {
-                  final rule = displayRules[index];
-                  return Card(
-                    color: Theme.of(context).cardColor,
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 4.0, horizontal: 2.0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RuleDetailPage(rule: rule),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              rule.image,
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                            ),
-                            const SizedBox(
-                              width: 16,
-                            ),
-                            Expanded(
-                              child: Text(
-                                rule.title,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 16,
-                            ),
-                            IconButton(
-                              alignment: Alignment.bottomRight,
-                              icon: Icon(Icons.favorite_border,
-                                  color: Theme.of(context).iconTheme.color),
-                              onPressed: () {
-                                // Handle favorite action here
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              );
-            } else {
-              return const Center(child: Text('No data found.'));
-            }
-          },
-        ),
+        body: ListRules(futureRules: futureRules),
         drawer: const MyDrawer(),
       ),
     );
