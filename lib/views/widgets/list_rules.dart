@@ -31,8 +31,7 @@ class ListRules extends StatelessWidget {
             itemCount: rules.length,
             itemBuilder: (context, index) {
               final rule = rules[index];
-              final isFavorite =
-                  favoritesCubit.state.any((fav) => fav.id == rule.id);
+
               return Card(
                 color: Theme.of(context).cardColor,
                 margin:
@@ -67,6 +66,8 @@ class ListRules extends StatelessWidget {
                         const SizedBox(width: 16),
                         BlocBuilder<FavoritesCubit, List<Tajweed>>(
                           builder: (context, state) {
+                            final isFavorite = favoritesCubit.state
+                                .any((fav) => fav.id == rule.id);
                             return IconButton(
                               color: Theme.of(context).dialogBackgroundColor,
                               alignment: Alignment.topLeft,
@@ -74,7 +75,7 @@ class ListRules extends StatelessWidget {
                                 isFavorite
                                     ? Icons.favorite
                                     : Icons.favorite_border,
-                                color: isFavorite ? Colors.red : Colors.grey,
+                                //color: isFavorite ? Colors.red : Colors.grey,
                               ),
                               onPressed: () {
                                 // Toggle favorite
